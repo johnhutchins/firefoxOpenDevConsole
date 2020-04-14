@@ -1,0 +1,18 @@
+{
+    "content_scripts": [
+        {
+            "matches": [
+                "*://*.salesforce.com/*"
+            ],
+            "js": [
+                "background_script.js"
+            ]
+        }
+    ],
+    "manifest_version": 2,
+    "name": "...",
+    "version": 0.1,
+    "icons": {
+        "main": "img.png"
+    }
+}
