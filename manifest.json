@@ -1,14 +1,9 @@
 {
-    "content_scripts": [
-        {
-            "matches": [
-                "*://*.salesforce.com/*"
-            ],
-            "js": [
-                "background_script.js"
-            ]
-        }
-    ],
+    "background": {
+        "scripts": [
+            "background_script.js"
+        ]
+    },
     "manifest_version": 2,
     "name": "Open sf dev console in firefox",
     "version": "0.1",
