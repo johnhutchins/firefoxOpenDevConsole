@@ -11,8 +11,11 @@
     ],
     "manifest_version": 2,
     "name": "Open sf dev console in firefox",
-    "version": 0.1,
+    "version": "0.1",
     "icons": {
-        "main": "img.png"
+        "48": "icons/img.png"
+    },
+    "browser_action": {
+        "default_icon": "icons/img.png"
     }
 }
