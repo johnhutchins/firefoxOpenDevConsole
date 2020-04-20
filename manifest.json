@@ -5,7 +5,7 @@
         ]
     },
     "manifest_version": 2,
-    "name": "Open sf dev console in firefox",
+    "name": "Open sf dev console in f",
     "version": "0.1",
     "icons": {
         "48": "icons/img.png"
@@ -15,5 +15,15 @@
     },
     "permissions": [
         "tabs"
-    ]
+    ],
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "windows": "Ctrl+Shift+Y",
+                "mac": "Command+Shift+Y",
+                "chromeos": "Ctrl+Shift+Y",
+                "linux": "Ctrl+Shift+Y"
+            }
+        }
+    }
 }
