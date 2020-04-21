@@ -6,7 +6,7 @@
     },
     "manifest_version": 2,
     "name": "Open sf dev console in f",
-    "version": "0.1",
+    "version": "2.1",
     "icons": {
         "48": "icons/img.png"
     },
@@ -19,6 +19,7 @@
     "commands": {
         "_execute_browser_action": {
             "suggested_key": {
+                "default": "Ctrl+Shift+Y",
                 "windows": "Ctrl+Shift+Y",
                 "mac": "Command+Shift+Y",
                 "chromeos": "Ctrl+Shift+Y",
