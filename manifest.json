@@ -5,8 +5,9 @@
         ]
     },
     "manifest_version": 2,
-    "name": "Open sf dev console in f",
-    "version": "2.1",
+    "name": "Open Salesforce developer console",
+    "description": "Opens the Salesforce developer console with the Org you are currently logged in with",
+    "version": "2.2",
     "icons": {
         "48": "icons/img.png"
     },
