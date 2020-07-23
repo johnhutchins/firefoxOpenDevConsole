@@ -2,7 +2,7 @@ const devSuffix = '/_ui/common/apex/debug/ApexCSIPage'
 browser.browserAction.onClicked.addListener(function () {
     browser.tabs.query({ currentWindow: true, active: false }, tabs => {
         tabs.forEach((tab) => {
-            if (tab.url.includes('salesforce')) {
+            if (tab.url.includes('salesforce') || tab.url.includes('lightning.force')) {
                 url = tab.url
             } else {
                 url = tabs[0].url
