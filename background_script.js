@@ -6,7 +6,13 @@ browser.browserAction.onClicked.addListener(function () {
         const matches = url.match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
         if (!matches[0].includes('salesforce')) {
             console.error("THIS IS AN ERROR. NOT SALESFORCE")
-            browser.tabs.create({ 'url': errPage })
+            browser.notifications.create(cakeNotification, {
+                "type": "basic",
+                //"iconUrl": browser.runtime.getURL("icons/cake-96.png"),
+                "title": "Time for cake!",
+                "message": "Something something cake"
+            });
+            //browser.tabs.create({ 'url': errPage })
         } else {
             return browser.tabs.create({ 'url': matches[0] + devSuffix })
         }
