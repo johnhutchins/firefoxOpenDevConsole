@@ -1,16 +1,31 @@
 const devSuffix = '/_ui/common/apex/debug/ApexCSIPage'
 let allOrgs = []
 
-//var instead of let?
-browser.browserAction.onClicked.addListener(function (info) {
-    let baseUrl = ''
+function handleResponse(message) {
+    console.log(`Message from the content script:  ${message.response}`);
+}
 
-    //never save the org info, delete it and rebuild everytime the browser action is called
+function handleError(error) {
+    console.log(`Error: ${error}`);
+}
+
+function sendMessageToTabs(data) {
+    let sending = browser.runtime.sendMessage({
+        data: data
+    })
+    console.log("Data from background script ", data)
+    sending.then(handleError)
+    //sending.then(handleResponse, handleError)
+}
+
+browser.browserAction.onClicked.addListener(function () {
+    //Clean old data if exists
     if (allOrgs.length > 0) {
         allOrgs = []
     }
     browser.tabs.query({ currentWindow: true }, tabs => {
         let domains = []
+        //Get all Urls
         for (let i = 0; i < tabs.length; i++) {
             if (tabs[i].url.includes('salesforce') || tabs[i].url.includes('lightning.force')) {
                 let domain = tabs[i].url.match(/^https?\:\/\/([^.]+)/i)
@@ -25,8 +40,8 @@ browser.browserAction.onClicked.addListener(function (info) {
             }
         }
         if (domains.length > 1) {
-            console.log(allOrgs)
-            //handle multiple orgs here, might need to
+            //TODO send response here
+            sendMessageToTabs(allOrgs)
             return allOrgs
         } else {
             const matches = allOrgs[0]['url'].match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
