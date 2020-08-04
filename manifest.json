@@ -15,7 +15,9 @@
         "default_icon": "icons/img.png"
     },
     "permissions": [
-        "tabs"
+        "tabs",
+        "contextMenus",
+        "menus"
     ],
     "commands": {
         "_execute_browser_action": {
@@ -27,5 +29,18 @@
                 "linux": "Ctrl+Shift+Y"
             }
         }
-    }
+    },
+    "content_scripts": [
+        {
+            "exclude_matches": [
+                "*://developer.mozilla.org/*"
+            ],
+            "matches": [
+                "*://*.mozilla.org/*"
+            ],
+            "js": [
+                "borderify.js"
+            ]
+        }
+    ]
 }
