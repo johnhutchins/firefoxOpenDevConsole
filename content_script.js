@@ -1,6 +1,7 @@
 function handleMessage(request, sender, sendResponse) {
-    console.log(`content script sent a message: ${request.content}`);
-    sendResponse({ response: "response from background script" });
+    console.log("handle message from content script....")
+    console.log(`background script sent a message: ${request.content}`)
+    sendResponse({ response: "this will eventually be an object" })
 }
 
-browser.runtime.onMessage.addListener(handleMessage);
+browser.runtime.onMessage.addListener(handleMessage)

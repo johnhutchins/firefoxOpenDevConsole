@@ -1,21 +1,27 @@
 const devSuffix = '/_ui/common/apex/debug/ApexCSIPage'
 let allOrgs = []
 
-function handleResponse(message) {
-    console.log(`Message from the content script:  ${message.response}`);
+function handleResponse() {
+    console.log(`Message from the content script:  ${message.response}`)
+    let url = message.response.data['url']
+    return browser.tabs.create({ 'url': url + devSuffix })
 }
 
-function handleError(error) {
-    console.log(`Error: ${error}`);
+function handleError() {
+    console.log("Error.")
 }
 
-function sendMessageToTabs(data) {
+function sendMessageToContent(data) {
+    console.log("opening sendMessagToContent method...")
     let sending = browser.runtime.sendMessage({
         data: data
     })
-    console.log("Data from background script ", data)
-    sending.then(handleError)
-    //sending.then(handleResponse, handleError)
+    try {
+        console.log("sending == ", sending)
+        sending.then(handleResponse, handleError)
+    } catch (e) {
+        console.log("error: ", e)
+    }
 }
 
 browser.browserAction.onClicked.addListener(function () {
@@ -40,9 +46,9 @@ browser.browserAction.onClicked.addListener(function () {
             }
         }
         if (domains.length > 1) {
-            //TODO send response here
-            sendMessageToTabs(allOrgs)
-            return allOrgs
+            //TODO wait for response from user, and return the new url to match that.
+            console.log('send Orgs to the Content Script here...')
+            sendMessageToContent(allOrgs)
         } else {
             const matches = allOrgs[0]['url'].match(/^https?\:\/\/([^\/?#]+)(?:[\/?#]|$)/i)
             console.log("Match = " + matches[0])
